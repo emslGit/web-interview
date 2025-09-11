@@ -39,11 +39,14 @@ If you feel constrained by time (which is totally fine!), prioritize quality ove
 ### Main Task
 Persist the todo lists on the server. Persisting in a database is not required. (Simple js structures on the server is fine). If you do go for an actual DB (again not required), be sure to include instructions of how to get it up and running.
 
+### DB Instructions
+This project runs an sqlite database using the "better-sqlite" package. To reset the database, simply delete the db file under backend/src/database/db.sqlite. A new one should be generated automatically on server restart. If we want to ignore the seeding we can also remove the "Seeding" part in backend/src/database/db.js.
+
 ### Additional tasks
-- Don't require users to press save when an item is added/edited in the todo list. (Autosave functionality)
-- Make it possible to indicate that a todo is completed.
-- Indicate that a todo list is completed if all todo items within are completed.
-- Add a date for completion to todo items. Indicate how much time is remaining or overdue.
+- [x] Don't require users to press save when an item is added/edited in the todo list. (Autosave functionality)
+- [x] Make it possible to indicate that a todo is completed.
+- [x] Indicate that a todo list is completed if all todo items within are completed.
+- [x] Add a date for completion to todo items. Indicate how much time is remaining or overdue.
 
 ## Submission
 Before submitting, read through all changes one last time - code quality matters!

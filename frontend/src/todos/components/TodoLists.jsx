@@ -9,26 +9,23 @@ import {
   Typography,
 } from '@mui/material'
 import ReceiptIcon from '@mui/icons-material/Receipt'
+import DoneIcon from '@mui/icons-material/Done'
 import { TodoListForm } from './TodoListForm'
 
-// Simulate network
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+const fetchTodoLists = async () => {
+  try {
+    const res = await fetch(`http://localhost:3001/lists/`)
+    const data = await res.json()
 
-const fetchTodoLists = () => {
-  return sleep(1000).then(() =>
-    Promise.resolve({
-      '0000000001': {
-        id: '0000000001',
-        title: 'First List',
-        todos: ['First todo of first list!'],
-      },
-      '0000000002': {
-        id: '0000000002',
-        title: 'Second List',
-        todos: ['First todo of second list!'],
-      },
-    })
-  )
+    if (!res.ok) {
+      throw new Error('Error fetching lists')
+    }
+
+    return data
+  } catch (error) {
+    console.error(error)
+    alert('Error fetching lists')
+  }
 }
 
 export const TodoLists = ({ style }) => {
@@ -52,6 +49,9 @@ export const TodoLists = ({ style }) => {
                   <ReceiptIcon />
                 </ListItemIcon>
                 <ListItemText primary={todoLists[key].title} />
+                {todoLists[key].todos.every((todo) => todo.status) && (
+                  <DoneIcon />
+                )}
               </ListItemButton>
             ))}
           </List>
